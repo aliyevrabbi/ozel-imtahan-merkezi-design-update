@@ -1,0 +1,160 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --primary-yellow: #F4D500;
+    --primary-yellow-hover: #E5C700;
+    --dark-black: #0F172A;
+    --soft-black: #1E293B;
+    --charcoal: #334155;
+    --muted: #64748B;
+    --ivory-bg: #FAFAF7;
+    --card-bg: #FFFFFF;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  body {
+    font-family: 'Manrope', 'DM Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    color: #1E293B;
+    background-color: #FAFAF7;
+    letter-spacing: -0.011em;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+
+  h1, h2, h3, .font-serif, .serif-heading {
+    font-family: 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+}
+
+.font-serif {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.font-cormorant {
+  font-family: 'Cormorant Garamond', Georgia, serif;
+}
+
+.font-sans, .font-manrope {
+  font-family: 'Manrope', system-ui, sans-serif;
+}
+
+.font-dm {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+/* Lightweight, hardware-accelerated animations for mobile (zero frame drops) */
+@keyframes fadeInLight {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.fade-in-light {
+  animation: fadeInLight 0.22s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: opacity, transform;
+}
+
+@keyframes pulseSubtle {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.02);
+    opacity: 0.92;
+  }
+}
+
+.animate-pulse-subtle {
+  animation: pulseSubtle 3.5s ease-in-out infinite;
+}
+
+@keyframes applicationErrorToastEnter {
+  from {
+    opacity: 0;
+    transform: translate3d(0, 0.75rem, 0);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}
+
+@keyframes applicationErrorToastExit {
+  from {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(0, 0.5rem, 0);
+  }
+}
+
+.application-error-toast-enter {
+  animation: applicationErrorToastEnter 0.22s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.application-error-toast-exit {
+  animation: applicationErrorToastExit 0.2s ease-in both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .fade-in-light,
+  .animate-pulse-subtle,
+  .application-error-toast-enter,
+  .application-error-toast-exit {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* Fast tap response for mobile buttons */
+button, a {
+  touch-action: manipulation;
+}
+
+/* Elegant academic card with silky micro-interaction */
+.academic-card {
+  background: #FFFFFF;
+  border: 1px solid #EAEAEA;
+  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.03);
+  transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s ease, border-color 0.2s ease;
+}
+
+.academic-card:hover {
+  border-color: #CBD5E1;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px -4px rgba(15, 23, 42, 0.06);
+}
+
+/* Print utilities for official exam tickets and results */
+@media print {
+  body {
+    background: white !important;
+    color: black !important;
+  }
+  .no-print {
+    display: none !important;
+  }
+  .print-only {
+    display: block !important;
+  }
+  .printable-card {
+    box-shadow: none !important;
+    border: 1px solid #111 !important;
+    break-inside: avoid;
+  }
+}
